@@ -14,8 +14,13 @@ export default class extends Controller {
       id: this.chatroomIdValue
     },
     {
-      received: data => { console.log(data) }
+      received: data => this.insertMessageAndScrollDown(data)
     }
     );
+  }
+
+  insertMessageAndScrollDown(newChatMessage) {
+    this.messagesTarget.insertAdjacentHTML("beforeend", newChatMessage)
+    this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
   }
 }

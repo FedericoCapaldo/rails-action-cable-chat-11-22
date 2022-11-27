@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
     if @message.save
       ChatroomChannel.broadcast_to(
         @chatroom,
-        "new message published!"
+        render_to_string(partial: "message", locals: {message: @message})
       )
       redirect_to chatroom_path(@chatroom)
     else
