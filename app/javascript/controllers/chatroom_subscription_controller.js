@@ -23,4 +23,8 @@ export default class extends Controller {
     this.messagesTarget.insertAdjacentHTML("beforeend", newChatMessage)
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
   }
+
+  resetForm(event) {
+    event.target.reset()
+  }
 }
