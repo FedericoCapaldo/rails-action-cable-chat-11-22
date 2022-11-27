@@ -9,7 +9,7 @@ export default class extends Controller {
 
   connect() {
     console.log(`Subscribe to the chatroom with the id ${this.chatroomIdValue}.`)
-    createConsumer().subscriptions.create({
+    this.channel = createConsumer().subscriptions.create({
       channel: 'ChatroomChannel',
       id: this.chatroomIdValue
     },
@@ -17,6 +17,11 @@ export default class extends Controller {
       received: data => this.insertMessageAndScrollDown(data)
     }
     );
+  }
+
+  disconnect() {
+    console.log("Unsubscribed from the chatroom")
+    this.channel.unsubscribe()
   }
 
   insertMessageAndScrollDown(newChatMessage) {
